@@ -1,5 +1,3 @@
-import 'dart:convert';
-import 'dart:ui';
 
 import 'package:flutter/material.dart';
 
@@ -15,18 +13,33 @@ class Restaurante extends StatefulWidget {
 }
 
 class _RestauranteState extends State<Restaurante> {
-
+  String entrada = "Pode Entrar";
   int cont = 0;
+
+  void estado(){
+    if(cont<10){
+      entrada = "Pode Entrar";
+    }else{
+      entrada = "Não Pode Entrar";
+    }
+  }
+
   void incrementar(){
+    if(cont<10){
     setState(() {
     cont++;
+    estado();
     });
-
+    }
   }
   void descrementar(){
+    if(cont>0){
     setState(() {
     cont--;
+    estado();
     });
+    }
+
   }
 
   @override
@@ -37,7 +50,7 @@ class _RestauranteState extends State<Restaurante> {
         child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
-        Text("Pode Entrar", style: TextStyle(fontSize: 30,color: Colors.white),),
+        Text(entrada, style: TextStyle(fontSize: 30,color: Colors.white),),
         Text(cont.toString(), style: TextStyle(fontSize: 100,color: Colors.white),),
         Row(mainAxisAlignment: MainAxisAlignment.center,
           children: [
